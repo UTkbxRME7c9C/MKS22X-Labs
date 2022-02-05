@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Recursion{
     public static final char[] a2e = {'a','b','c','d','e'};
     public static final char[] a2c = {'a','b','c'};
@@ -50,24 +48,41 @@ public class Recursion{
         if (Math.floor(newguess*100000)/100000 == Math.floor(guess*100000)/100000) return newguess;
         return sqrt(n,newguess);
     }
-
-    public static long countNoDoubleLetterWords(int length,String word){
+    public static long count = 0; 
+    public static long countNoDoubleLetterWords(int length,String word){ 
         if (length==0){
             boolean t = true;
+            String s = "";
+            for(int i = 0;i<word.length();i++){
+                s += 'a';
+            }
+            if (word.equals(s)) count=0;
             for(int i = 0;i<word.length()-1;i++){
                 if (word.charAt(i) == word.charAt(i+1)){
                     t = false;
                     break;
                 }
             }
-            if (t) System.out.println(word);
+            if (t) count++;
         }else{
             for(char i = 'a';i<'z'+1;i++){
                 countNoDoubleLetterWords(length-1, word+i);
             }
         }
+    return count;
+    }
+
+    public static int fibIter(int n, int f1, int f2){
+        if (n==0) return f2;
+        return fibIter(n-1,f1+f2,f1);
     }
 
     public static void main(String[] args){
+        System.out.println(fibIter(0,1,0));
+        System.out.println(fibIter(1,1,0));
+        System.out.println(fibIter(2,1,0));
+        System.out.println(fibIter(3,1,0));
+
     }
+
 }
