@@ -78,11 +78,8 @@ public class Recursion{
     }
 
     public static void main(String[] args){
-        System.out.println(fibIter(0,1,0));
-        System.out.println(fibIter(1,1,0));
-        System.out.println(fibIter(2,1,0));
-        System.out.println(fibIter(3,1,0));
-
+        System.out.println(countNoDoubleLetterWords(3, ""));
+        printNoDoubleLetterWords(3, "", a2c);
     }
 
 }
