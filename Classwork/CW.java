@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 public class CW{
     public static boolean partialSum(int[] arr, int target){
         return partialSum(0,arr,target);
