@@ -48,7 +48,7 @@ public class codingbat{
 		return splitOdd10(nums, 0, 0, 0);
 	}
 	public static boolean splitOdd10(int[] nums, int start, int g1 , int g2){
-		if(start>= nums.length) return ((g1%2!=0&&g2%10==0) || (g1%2==0&&g2%10!=0));
+		if(start>= nums.length) return ((g1%2!=0&&g2%10==0));
 		return (splitOdd10(nums, start+1, g1+nums[start], g2) || splitOdd10(nums, start+1, g1, g2+nums[start]));
 	}
 	public static void main(String[] args){
