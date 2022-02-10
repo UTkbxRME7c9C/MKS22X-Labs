@@ -44,11 +44,18 @@ public class codingbat{
 		if (nums[start]==rep) return (groupSumClump(start+repi, nums, target-(rep*repi),rep,repi)|| groupSumClump(start+repi, nums, target, rep, repi));
 		return (groupSumClump(start+1, nums, target, rep, repi)|| groupSumClump(start+1, nums, target-nums[start], rep, repi));
 	}
+	public static boolean splitOdd10(int[] nums){
+		return splitOdd10(nums, 0, 0, 0);
+	}
+	public static boolean splitOdd10(int[] nums, int start, int g1 , int g2){
+		if(start>= nums.length) return ((g1%2!=0&&g2%10==0) || (g1%2==0&&g2%10!=0));
+		return (splitOdd10(nums, start+1, g1+nums[start], g2) || splitOdd10(nums, start+1, g1, g2+nums[start]));
+	}
 	public static void main(String[] args){
 		int[] num = {1,2,4,8,1};	
 		int[] num2 = {2,4,4,8};
-		System.out.println(groupSumClump(0, num, 14));
-		System.out.println(groupSumClump(0, num2, 14));
+		System.out.println(splitOdd10(num));
+		System.out.println(splitOdd10(num));
 
 
 	}
