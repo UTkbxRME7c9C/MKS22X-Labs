@@ -51,12 +51,20 @@ public class codingbat{
 		if(start>= nums.length) return ((g1%2!=0&&g2%10==0));
 		return (splitOdd10(nums, start+1, g1+nums[start], g2) || splitOdd10(nums, start+1, g1, g2+nums[start]));
 	}
+	public static boolean split53(int[] nums){
+		return split53(nums, 0, 0);
+	}
+	public static boolean split53(int[] nums, int start, int target ){
+		if(start>= nums.length) return (target==0);
+		if(nums[start]%5==0) return split53(nums, start+1, target+nums[start]);
+		if(nums[start]%3==0) return split53(nums, start+1, target-nums[start]);
+		return (split53(nums, start+1, target+nums[start]) || split53(nums, start+1, target-nums[start]));
+	}
 	public static void main(String[] args){
-		int[] num = {1,2,4,8,1};	
-		int[] num2 = {2,4,4,8};
-		System.out.println(splitOdd10(num));
-		System.out.println(splitOdd10(num));
-
+		int[] num = {1,1,1};	
+		int[] num2 = {2,4,2};
+		System.out.println(split53(num));
+		System.out.println(split53(num2));
 
 	}
 }
