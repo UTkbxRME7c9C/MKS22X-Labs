@@ -1,17 +1,4 @@
-import java.util.*;
 public class CW{
-    public static boolean partialSum(int[] arr, int target){
-        return partialSum(0,arr,target);
-    }
-    public static boolean partialSum(int start, int[] arr, int target){
-        boolean a=false;
-        if (start==target) a= true;
-        for (int i = 0;i<arr.length;i++){
-            if( partialSum(start,arr, target)||partialSum(start+arr[i], arr, target)) a= true;
-        }
-        return a;
-    }
-
     public static String toWords(int n){
         if (n==0) return "zero";
         String[] place = {"hundred", "thousand", "million", "billion",};
@@ -34,7 +21,6 @@ public class CW{
     }
 
     public static void main(String[] args){
-        int[] a = {1,2,3};
-            System.out.println(partialSum(0, a, 2));
+
     }
 }
