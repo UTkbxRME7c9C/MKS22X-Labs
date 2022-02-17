@@ -1,36 +1,65 @@
 public class QueenBoard{
     private int[][] board;
+    private boolean animated;
+    private int delay;
     public QueenBoard(){
         board = new int[8][8];
+        animated = false;
+        delay = 1000;
     }
     public QueenBoard(int size){
         board = new int[size][size];
+        delay = 1000;
+        animated = false;
     }
 
+    public void setAnimate(boolean newValue){
+        animated = newValue;
+    }
+    public void setDelay(int newValue){
+        delay = newValue;
+    }
 
-    /**Find the first solution configuration possible for this size board. Start by placing
-    *  the 1st queen in the top left corner, and each new queen in the next ROW. When backtracking
-    *  move the previous queen to the next valid space. This means everyone will generate the same
-    *  first solution.
-    *@postcondition: the board remains in a solved state.
-    *@return false when the board is not solveable and leaves the board filled with zeros;
-    *        returns true when the board is solveable, and leaves the board in a solved state
-    *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
-    */
     public boolean solve(){
         return solve(0);
     }
     public boolean solve(int row){
+        if(row==0 && board[0][0] != 0) throw new IllegalStateException("Board already solved");
         if(row==board.length){
             return true;
         } else{
+            for(int i = 0;i<board.length;i++){
+                if(addQueen(row, i)){
+                    if(solve(row+1)) return true;
+                    removeQueen(row, i);
+                }
+            }
             return false;
         }
 
     }
+    public int countSolutions(){
+        return countSolutions(0,0,0);
+    }
+    public int countSolutions(int row, int col, int total){
+        if(row==0 && board[0][0] != 0) throw new IllegalStateException("Board already solved");
+        if(row==board.length && col == board.length){
+            return total;
+        } else{
+            while(col<board.length){
+                if(addQueen(row,col)){
+
+                }
+                col++;
+            }
+        }
+        return total;
+
+    }
+
     public String toString(){
         String ans = "";
-        for(int i = 0; i < board.length-1;i++){
+        for(int i = 0; i < board.length;i++){
             for(int j = 0; j < board[0].length;j++){
                 if(board[i][j] < 0){ // queen check -1
                     ans+= "Q ";
@@ -74,12 +103,22 @@ public class QueenBoard{
         if (board[r][c]!=0) return false;
         board[r][c] = -1;
         modBoard(r, c, 1);
+        if(animated){
+            System.out.println(Text.go(1,1));
+            System.out.println(this);//can modify here
+            Text.wait(delay);
+        }
         return true;
     }
     private void removeQueen(int r, int c){
         if (board[r][c] < 0 ){
             board[r][c] = 0;
             modBoard(r, c, -1);
+        }
+        if(animated){
+            System.out.println(Text.go(1,1));
+            System.out.println(this);//can modify here
+            Text.wait(delay);
         }
     }
 }
