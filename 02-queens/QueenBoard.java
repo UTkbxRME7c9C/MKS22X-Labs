@@ -38,23 +38,25 @@ public class QueenBoard{
         }
 
     }
+    private static int count;
     public int countSolutions(){
-        return countSolutions(0,0,0);
+        return countSolutions(0,0);
     }
-    public int countSolutions(int row, int col, int total){
+    public int countSolutions(int row, int col){
         if(row==0 && board[0][0] != 0) throw new IllegalStateException("Board already solved");
-        if(row==board.length && col == board.length){
-            return total;
-        } else{
-            while(col<board.length){
-                if(addQueen(row,col)){
-
+        if (row==0 && col==0 && board[0][0] == 0) count=0;
+        if(row==board.length){
+            count++;
+        }else{
+            while (col<board.length){
+                if(addQueen(row, col)){
+                    countSolutions(row+1,0);
+                    removeQueen(row, col);
                 }
                 col++;
             }
         }
-        return total;
-
+        return count;
     }
 
     public String toString(){
