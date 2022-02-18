@@ -13,9 +13,7 @@ public class Driver{
         System.out.println(Text.CLEAR_SCREEN);
         System.out.println(Text.HIDE_CURSOR);
         System.out.println(Text.go(1,1));
-        System.out.println(b.countSolutions());
-        System.out.println(b.countSolutions());
-        System.out.println(b.toStringDebug());
+        b.solve();
         System.out.println(Text.RESET);
     }
 }

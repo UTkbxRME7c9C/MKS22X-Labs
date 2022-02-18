@@ -73,11 +73,17 @@ public class QueenBoard{
         }
         return ans;
     }
-    public String toStringDebug(){
+    public String toStringDebug(){ // used for anim part
         String ans = "";
         for(int i = 0; i < board.length-1;i++){
             for(int j = 0; j < board[0].length;j++){
-                ans+= board[i][j] + " ";
+                if(board[i][j] < 0){
+                    ans+= "♛ ";
+                } else if (board[i][j] > 0){
+                    ans+= "\u001b[90m×\u001b[0m ";
+                } else {
+                    ans += "_ ";
+                }     
             }
             ans+="\n";
         }
@@ -107,7 +113,7 @@ public class QueenBoard{
         modBoard(r, c, 1);
         if(animated){
             System.out.println(Text.go(1,1));
-            System.out.println(this);//can modify here
+            System.out.println(toStringDebug());//can modify here
             Text.wait(delay);
         }
         return true;
@@ -119,7 +125,7 @@ public class QueenBoard{
         }
         if(animated){
             System.out.println(Text.go(1,1));
-            System.out.println(this);//can modify here
+            System.out.println(toStringDebug());//can modify here
             Text.wait(delay);
         }
     }
