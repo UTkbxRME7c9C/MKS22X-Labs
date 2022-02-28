@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class mazetest{
 
-    public static char[][] printline(String filename) throws FileNotFoundException{
+    public static char[][] makeCharAry(String filename) throws FileNotFoundException{
         File fil = new File(filename);
         Scanner input = new Scanner(fil);
         String tmp = "";
