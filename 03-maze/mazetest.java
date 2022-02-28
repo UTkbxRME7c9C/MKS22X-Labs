@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-public class maze{
+public class mazetest{
 
     public static char[][] printline(String filename) throws FileNotFoundException{
         File fil = new File(filename);
@@ -32,7 +32,7 @@ public class maze{
     }
     public static void main(String[] args){
         try {
-            System.out.println(toStr(printline("mze")));
+            System.out.println(toStr(printline(args[0])));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
