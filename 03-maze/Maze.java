@@ -26,16 +26,23 @@ public class Maze{
         Scanner input = new Scanner(fil);
         String tmp = "";
         while(input.hasNextLine()){
-            tmp+=input.nextLine() + "\n";
+            tmp+=input.nextLine() + "!";
         }
         input.close();
-        // startrow col
-        String[] temp = tmp.split("\n");
+        for(int i = 0; i<tmp.length();i++){
+            if (tmp.charAt(i)=='S') break;
+            if (tmp.charAt(i)=='!'){
+                startRow=0;
+                startCol++;
+            }else{
+                startRow++;
+            }
+        }
+        String[] temp = tmp.split("!");
         maze = new char[temp.length][];
         for(int i = 0;i<maze.length;i++){
             maze[i] = temp[i].toCharArray();
         }
-
     }
 
     private void wait(int millis){
@@ -63,7 +70,14 @@ public class Maze{
     It should look like the text file with some characters replaced.
     */
     public String toString(){
-        return "WRITE THIS METHOD";
+        String ans = "";
+        for(int i = 0; i < maze.length;i++){
+            for(int j = 0; j < maze[0].length;j++){
+                ans+=maze[i][j];
+            }
+            ans+="\n";
+        }
+        return ans;
     }
 
     /*Wrapper Solve Function returns the helper function
@@ -94,15 +108,22 @@ public class Maze{
     All visited spots that were not part of the solution are changed to '.'
     All visited spots that are part of the solution are changed to '@'
     */
+    private int atcount = 0;
     private int solve(int row, int col){ //you can add more parameters since this is private
         //automatic animation! You are welcome.
         if(animate){
-        gotoTop();
-        System.out.println(this);
-        wait(50);
+            gotoTop();
+            System.out.println(this);
+            wait(50);
         }
-
+        if (maze[row][col]=='E'){
+            return atcount;
+        }else if (maze[row][col]=='#' || maze[row][col] == '.' || maze[row][col]=='@'){
+            return -1;
+        }else{
+            
+        }
         //COMPLETE SOLVE
-        return -1; //so it compiles
+        return atcount;
     }
 }
