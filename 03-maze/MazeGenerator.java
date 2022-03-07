@@ -3,6 +3,15 @@ public class MazeGenerator {
     private static Random a = new Random();
     public static void generate(char[][] maze, int startrow, int startcol){
         generateMaze(maze, startrow, startcol);
+        maze[startrow][startcol] = 'S';
+        while (true){
+            int i = a.nextInt(maze.length);
+            int j = a.nextInt(maze[0].length);
+            if(maze[i][j] == ' '){
+                maze[i][j] = 'E';
+                break;
+            }
+        }
     }
     public static void generateMaze(char[][] maze, int startrow, int startcol){
         if (startrow <= 0){
@@ -27,10 +36,10 @@ public class MazeGenerator {
             }
             else {
                 maze[startrow][startcol] = ' ';
-                generate(maze, startrow+1, startcol);
-                generate(maze, startrow, startcol-1);
-                generate(maze, startrow, startcol+1);
-                generate(maze, startrow-1, startcol);
+                generateMaze(maze, startrow+1, startcol);
+                generateMaze(maze, startrow, startcol-1);
+                generateMaze(maze, startrow, startcol+1);
+                generateMaze(maze, startrow-1, startcol);
             }
         }
     }
