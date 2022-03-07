@@ -8,10 +8,14 @@
             int startrow = Integer.parseInt(args[2]);
             int startcol = Integer.parseInt(args[3]);
             char[][]maze = new char[rows][cols];
-            //you must fill maze with '#'
+            for (int i = 0;i<maze.length;i++){
+                for (int j = 0;j<maze[0].length;j++){
+                    maze[i][j] = '#';
+                }
+            }
             MazeGenerator.generate(maze,startrow,startcol);
             //Print the maze here.
-            System.out.println("MAZE!");//You need a way to show the maze without the array brackets etc.
+            System.out.println(MazeGenerator.toString(maze));//You need a way to show the maze without the array brackets etc.
           }else if(args.length == 1  || args.length == 2){
               try{
                   Maze m = new Maze(args[0]);

@@ -1,11 +1,11 @@
-import java.util.*;
+
 import java.io.*;
 
 public class Driver{
     public static void main(String[]args){
 
       //files do not require an extension like .txt or .dat
-      String filename = "maze5";
+      String filename = args[0];
 
       try{
         Maze f;
