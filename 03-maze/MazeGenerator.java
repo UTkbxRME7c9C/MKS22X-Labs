@@ -1,29 +1,36 @@
 import java.util.Random;
 public class MazeGenerator {
-    private Random a = new Random();
+    private static Random a = new Random();
     public static void generate(char[][] maze, int startrow, int startcol){
+        generateMaze(maze, startrow, startcol);
+    }
+    public static void generateMaze(char[][] maze, int startrow, int startcol){
         if (startrow <= 0){
-            generate(maze, startrow+1, startcol);
+            //generate(maze, startrow+1, startcol);
         } else if (startcol <= 0){
-            generate(maze, startrow, startcol+1);
+            //generate(maze, startrow, startcol+1);
         } else if (startrow >= maze.length-1){
-            generate(maze, startrow-1, startcol);
+           // generate(maze, startrow-1, startcol);
         } else if (startcol >= maze[0].length-1) {
-            generate(maze, startrow, startcol-1);
+           // generate(maze, startrow, startcol-1);
         }
         else if (maze[startrow][startcol] == ' '){
-
+           // generate(maze, startrow, startcol-1);
         } else{
             int spaces = 0;
             if (maze[startrow][startcol+1] == ' ' ) spaces++;
             if (maze[startrow][startcol-1] == ' ' ) spaces++;
             if (maze[startrow+1][startcol] == ' ' ) spaces++;
             if (maze[startrow-1][startcol] == ' ' ) spaces++;
-            if (spaces>1){
-
+            if (spaces>1){ 
+           //     generate(maze, startrow, startcol-1);
             }
             else {
                 maze[startrow][startcol] = ' ';
+                generate(maze, startrow+1, startcol);
+                generate(maze, startrow, startcol-1);
+                generate(maze, startrow, startcol+1);
+                generate(maze, startrow-1, startcol);
             }
         }
     }
