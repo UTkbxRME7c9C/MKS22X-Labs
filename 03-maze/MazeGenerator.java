@@ -36,7 +36,7 @@ public class MazeGenerator {
         return true;
         
     }
-    public static void generateMaze(char[][] maze, int startrow, int startcol, int repturn, int[] turns){
+    private static void generateMaze(char[][] maze, int startrow, int startcol, int repturn, int[] turns){
         if (canCurve(maze, startrow, startcol)){
             maze[startrow][startcol] = ' ';
             ArrayList<Integer> index = new ArrayList<Integer>();
