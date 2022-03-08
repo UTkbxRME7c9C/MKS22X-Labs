@@ -1,47 +1,63 @@
 import java.util.Random;
+import java.util.ArrayList;
 public class MazeGenerator {
     private static Random a = new Random();
+    private static final int[][] offset = {{0,1}, {0,-1}, {1,0}, {-1,0}};
+    public static void generate(int startrow, int startcol){
+        char[][]maze = new char[startrow][startcol];
+        for (int i = 0;i<maze.length;i++){
+            for (int j = 0;j<maze[0].length;j++){
+                maze[i][j] = '#';
+            }
+        }
+        generate(maze, startrow, startcol);
+    }
     public static void generate(char[][] maze, int startrow, int startcol){
-        generateMaze(maze, startrow, startcol);
+        generateMaze(maze, startrow, startcol, 2, new int[2]);
         maze[startrow][startcol] = 'S';
+        int radius = (Math.min(maze.length,maze[0].length))/2;
         while (true){
             int i = a.nextInt(maze.length);
             int j = a.nextInt(maze[0].length);
-            if(maze[i][j] == ' '){
+            if(maze[i][j] == ' ' && (startrow-radius>=i || startrow+radius <=i) && (startcol-radius>=j || startcol+radius <=j)){
                 maze[i][j] = 'E';
                 break;
             }
         }
     }
-    public static void generateMaze(char[][] maze, int startrow, int startcol){
-        if (startrow <= 0){
-            //generate(maze, startrow+1, startcol);
-        } else if (startcol <= 0){
-            //generate(maze, startrow, startcol+1);
-        } else if (startrow >= maze.length-1){
-           // generate(maze, startrow-1, startcol);
-        } else if (startcol >= maze[0].length-1) {
-           // generate(maze, startrow, startcol-1);
-        }
-        else if (maze[startrow][startcol] == ' '){
-           // generate(maze, startrow, startcol-1);
-        } else{
-            int spaces = 0;
-            if (maze[startrow][startcol+1] == ' ' ) spaces++;
-            if (maze[startrow][startcol-1] == ' ' ) spaces++;
-            if (maze[startrow+1][startcol] == ' ' ) spaces++;
-            if (maze[startrow-1][startcol] == ' ' ) spaces++;
-            if (spaces>1){ 
-           //     generate(maze, startrow, startcol-1);
+    private static boolean canCurve(char[][]board,int row,int col){
+        if (row<=0 || col <= 0 || row>=board.length-1 || col>=board[0].length-1  || board[row][col] == ' ') return false;
+        int spaces = 0;
+        if (board[row][col+1] == ' ') spaces++;
+        if (board[row][col-1] == ' ') spaces++;
+        if (board[row+1][col] == ' ') spaces++;
+        if (board[row-1][col] == ' ') spaces++;
+        if (spaces>=2) return false;
+        return true;
+        
+    }
+    public static void generateMaze(char[][] maze, int startrow, int startcol, int repturn, int[] turns){
+        if (canCurve(maze, startrow, startcol)){
+            maze[startrow][startcol] = ' ';
+            ArrayList<Integer> index = new ArrayList<Integer>();
+            index.add(0);
+            index.add(1);
+            index.add(2);
+            index.add(3);
+            while(index.size()>0){
+                if(repturn>0){
+                    repturn--;
+                    generateMaze(maze, startrow+turns[0], startcol+turns[1], repturn, turns);
+                }else{
+                    int direction = index.remove(a.nextInt(index.size()));
+                    turns[0] = offset[direction][0];
+                    turns[1] = offset[direction][1];
+                    repturn = 2;
+                    generateMaze(maze, startrow+turns[0], startcol+turns[1], repturn, turns);
+                }
             }
-            else {
-                maze[startrow][startcol] = ' ';
-                generateMaze(maze, startrow+1, startcol);
-                generateMaze(maze, startrow, startcol-1);
-                generateMaze(maze, startrow, startcol+1);
-                generateMaze(maze, startrow-1, startcol);
-            }
         }
+
     }
     public static String toString(char[][] maze){
         String ans = "";
@@ -54,42 +70,3 @@ public class MazeGenerator {
         return ans;
     }
 }
-
-
-// private int solve(int row, int col){ //you can add more parameters since this is private
-//     //automatic animation! You are welcome.
-//     animate();
-//     if (maze[row][col]=='E'){
-//         return 0;
-//     }else if (maze[row][col]=='#' || maze[row][col] == '.' || maze[row][col]=='@'){
-//         return -1;
-//     }else{
-//         maze[row][col] = '@';
-//         animate();
-//         int s = solve(row+1, col);
-//         int n = solve(row-1,col);
-//         int w = solve(row,col+1);
-//         int e = solve(row,col-1);
-//         if (s>-1){
-//             return s+1;
-//         } else if (n>-1){
-//             return n+1;
-//         } else if (w>-1){
-//             return w+1;
-//         } else if (e>-1){
-//             return e+1;
-//         }else{
-//             maze[row][col] = '.';
-//             animate();
-//             return -1;
-//         }
-//     }
-// }
-
-// private void animate(){
-//     if(animate){
-//         gotoTop();
-//         System.out.println(this);
-//         wait(50);
-//     }
-// }
