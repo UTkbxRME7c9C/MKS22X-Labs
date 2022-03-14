@@ -10,6 +10,7 @@ public class Silver {
             int N = input.nextInt();
             int M = input.nextInt();
             int T = input.nextInt();
+            int[][] landpaths = new int[N][M];
             char[][] land = new char[N][M];
             for(int i = 0; i<N;i++){
                 String temp = input.next();
@@ -17,24 +18,30 @@ public class Silver {
                     land[i][j]=temp.charAt(j);
                 }
             }
-            int[] coor1 = new int[2];
-            int[] coor2 = new int[2];
-            coor1[0]=input.nextInt()-1;
-            coor1[1]=input.nextInt()-1;
-            coor2[0]=input.nextInt()-1;
-            coor2[1]=input.nextInt()-1;
-            input.close();
-            int[][] landpaths = new int[N][M];
-            for(int i = 0; i<N;i++){
-                for(int j = 0; j<M;j++){
-                    if (Math.abs(coor1[0]-i) > T || Math.abs(coor1[1]-j) >T) break;
+            int R1=input.nextInt()-1;
+            int C1=input.nextInt()-1;
+            int R2=input.nextInt()-1;
+            int C2=input.nextInt()-1;
+            for (int i = 0;i<N;i++){
+                for (int j =0;j<M;j++){
+                    if (land[i][j] == '*'){
+                        landpaths[i][j]=-1;
+                    }
                 }
             }
+            landpaths[R1][C1] = 1;
+            input.close();
+            for (int i = T;i>0;i--){
+                
+            }
+
             System.out.println(Arrays.toString(coor2));
             return landpaths[coor2[0]][coor2[1]];
         }catch(FileNotFoundException e){
             return -1;
         }
     }
+
+
     
 }
