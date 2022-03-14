@@ -1,7 +1,8 @@
 import java.util.*;
 import java.io.*;
 public class Bronze{
-    public static long solve(String filename) throws FileNotFoundException{
+    public static long solve(String filename){
+        try{
         ArrayList<Integer> palot = new ArrayList<Integer>();
         File what = new File(filename);
         Scanner input = new Scanner(what);
@@ -53,5 +54,8 @@ public class Bronze{
         //System.out.println(Arrays.deepToString(land));
         //System.out.println((total*72)*72);
         return ((total*72)*72);
+        }catch(FileNotFoundException e){
+            return -1;
+        }
     }
 }
