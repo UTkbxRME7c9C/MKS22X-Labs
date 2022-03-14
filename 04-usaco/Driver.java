@@ -1,6 +1,6 @@
 
 public class Driver {
     public static void main(String[] args){
-        System.out.println(Bronze.solve(args[0]));
+        System.out.println(Silver.solve(args[0]));
     }
 }

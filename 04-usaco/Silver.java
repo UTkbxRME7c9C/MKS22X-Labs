@@ -7,18 +7,31 @@ public class Silver {
         try{
             File what = new File(filename);
             Scanner input = new Scanner(what);
-            String[] temp = input.nextLine().split(" ");
-            int N = Integer.parseInt(temp[0]);
-            int M = Integer.parseInt(temp[1]);
-            int T = Integer.parseInt(temp[2]);
+            int N = input.nextInt();
+            int M = input.nextInt();
+            int T = input.nextInt();
             char[][] land = new char[N][M];
             for(int i = 0; i<N;i++){
+                String temp = input.next();
                 for(int j = 0; j<M;j++){
-                    land[i][j]=input.next().charAt(0);
+                    land[i][j]=temp.charAt(j);
                 }
             }
+            int[] coor1 = new int[2];
+            int[] coor2 = new int[2];
+            coor1[0]=input.nextInt()-1;
+            coor1[1]=input.nextInt()-1;
+            coor2[0]=input.nextInt()-1;
+            coor2[1]=input.nextInt()-1;
             input.close();
-            return 1;
+            int[][] landpaths = new int[N][M];
+            for(int i = 0; i<N;i++){
+                for(int j = 0; j<M;j++){
+                    if (Math.abs(coor1[0]-i) > T || Math.abs(coor1[1]-j) >T) break;
+                }
+            }
+            System.out.println(Arrays.toString(coor2));
+            return landpaths[coor2[0]][coor2[1]];
         }catch(FileNotFoundException e){
             return -1;
         }
