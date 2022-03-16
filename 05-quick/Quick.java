@@ -1,8 +1,8 @@
 import java.util.*;
-public class Preliminary{
+public class Quick{
     private static Random rand = new Random();
     public static void main(String[] args){
-        int [] data = new int[] {4,3,2,1,0};
+        int [] data = new int[] {7,6,5,4,3,2,1,0};
         System.out.println("Original: "+Arrays.toString(data));
         int pivot = partition(data, 0, 4);
         System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
@@ -18,30 +18,20 @@ public class Preliminary{
         boolean switc = true;
         if (start==0) start=1;
         while(start<end){
-            if (data[start] < data[0]){
+            boolean isTall = data[start] < data[0];
+            boolean isEqual = data[start] == data[0];
+            if (isTall || (isEqual && switc)){
+                if (isEqual) switc = false;
                 temp = data[1];
                 data[1]=data[start];
                 data[start]=temp;
-            } else if (data[start] > data[0]){
+            } else{
+                if (isEqual) switc = true;
                 end-=1;
                 temp = data[end];
                 data[end] = data[start];
                 data[start] = temp;
                 start--;
-            } else{
-                if (switc){
-                    switc = false;
-                    temp = data[1];
-                    data[1]=data[start];
-                    data[start]=temp;
-                } else{
-                    switc = true;
-                    end-=1;
-                    temp = data[end];
-                    data[end] = data[start];
-                    data[start] = temp;
-                    start--;
-                }
             }
             start++;
         }
@@ -49,5 +39,18 @@ public class Preliminary{
         data[0]=data[start-1];
         data[start-1] = temp;
         return start-1;
+    }
+    public static int quickselect(int[] data, int k){
+    /*return the value that is the kth smallest value of the array.
+    *@param data must have a length > 0
+    *@param k is 0 to data.length-1 inclusive
+    *@postcondition The array may be modified. */
+        int tempk = data.length-1;
+        int a =partition(data, 0, tempk);
+        
+        return 1;
+    }
+    public static void quicksort(int[] data){
+
     }
 }
