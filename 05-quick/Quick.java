@@ -2,36 +2,37 @@ import java.util.*;
 public class Quick{
     private static Random rand = new Random();
     public static void main(String[] args){
-        int [] data = new int[] {7,6,5,4,3,2,1,0};
-       //int[] data = {17, 61, 67, 47, 93,12, 20, 4, 44, 68} ;
-        for(int i = 0;i<data.length;i++){
-            System.out.println(quickselect(data,i));
-        }
-        //int pivot = partition( data , 0,data.length-1);
-        //System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
+        //int [] data = {7,6,5,4,3,2,1,0};
+        int[] data = {17, 61, 67, 47, 93,12, 20, 4, 44, 68} ;
+        // for(int i = 0;i<data.length;i++){
+        //     System.out.println(quickselect(data,i));
+        // }
+        quicksort(data);
+        // int pivot = partition( data , 4,data.length-1);
+        // System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
         System.out.println("Modified: "+Arrays.toString(data));
         System.out.println();
     }
     public static int partition(int[] data, int start, int end){
-        // possible fix this
         end++;
         int pivot = rand.nextInt((end)-start)+start;
-        int temp = data[0];
-        data[0] = data[pivot];
+        int temp = data[start];
+        data[start] = data[pivot];
         data[pivot] = temp;
         boolean switc = true;
-        if (start==0) start=1;
+        int newstart = start;
+        start++;
         while(start<end){
-            boolean isTall = data[start] < data[0];
-            boolean isEqual = data[start] == data[0];
+            boolean isTall = data[start] < data[newstart];
+            boolean isEqual = data[start] == data[newstart];
             if (isTall || (isEqual && switc)){
                 if (isEqual) switc = false;
-                temp = data[1];
-                data[1]=data[start];
+                temp = data[newstart+1];
+                data[newstart+1]=data[start];
                 data[start]=temp;
             } else{
                 if (isEqual) switc = true;
-                end-=1;
+                end--;
                 temp = data[end];
                 data[end] = data[start];
                 data[start] = temp;
@@ -39,8 +40,8 @@ public class Quick{
             }
             start++;
         }
-        temp = data[0];
-        data[0]=data[start-1];
+        temp = data[newstart];
+        data[newstart]=data[start-1];
         data[start-1] = temp;
         return start-1;
     }
@@ -50,8 +51,7 @@ public class Quick{
         while(true){
             int p = partition(data, start, end);
             if (p == k){
-               // System.out.println(Arrays.toString(data));
-                 return data[k];
+                return data[k];
             }else if (p < k){
                 start = p+1;
             } else{
@@ -72,5 +72,34 @@ public class Quick{
             start = nstart;
             end = nend;
         }
+    }
+    public static int partitionDutch(int[] data, int start, int end){
+        int mid = (start+end)/2;
+        end++;
+        int pivot = rand.nextInt((end)-start)+start;
+        int temp = data[mid];
+        data[mid] = data[pivot];
+        data[pivot] = temp;
+        int newstart = start;
+        start++;
+        while(start<end){
+            boolean isTall = data[start] < data[newstart];
+            boolean isEqual = data[start] == data[newstart];
+            if (!isEqual){
+                if (isTall){
+                    temp = data[newstart+1];
+                    data[newstart+1]=data[start];
+                    data[start]=temp;
+                } else{
+                    end--;
+                    temp = data[end];
+                    data[end] = data[start];
+                    data[start] = temp;
+                    start--;          
+                }
+            }
+            start++;
+        }
+        return start-1;
     }
 }
