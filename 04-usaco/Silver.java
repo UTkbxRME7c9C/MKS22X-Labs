@@ -58,7 +58,6 @@ public class Silver {
                   }
                 }
             }
-            System.out.println(Arrays.deepToString(landpaths));
             return landpaths[second][R2][C2];
         }catch(FileNotFoundException e){
             return -1;
