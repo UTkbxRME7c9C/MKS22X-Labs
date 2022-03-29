@@ -27,11 +27,11 @@ public class MyDeque<E>{
     }
 
     public String toString(){
-        String str = "[ ";
+        String str = "[";
         for(int i = start; i < end; i++){
             str += data[i] + ", ";
         }
-        str += data[end] + " ]";
+        str += data[end] + "]";
         return str;
     }
 
