@@ -32,18 +32,15 @@ public class BurnTrees{
         int[] a = {temp[0]-1,temp[1]};
         burns.add(a);
         map[temp[0]-1][temp[1]] = FIRE;
-      }
-      if (temp[0]<map.length-1 && map[temp[0]+1][temp[1]] == TREE){
+      }if (temp[0]<map.length-1 && map[temp[0]+1][temp[1]] == TREE){
         int[] a = {temp[0]+1,temp[1]};
         burns.add(a);     
         map[temp[0]+1][temp[1]] = FIRE;
-      }
-      if (temp[1]>0 && map[temp[0]][temp[1]-1] == TREE){
+      }if (temp[1]>0 && map[temp[0]][temp[1]-1] == TREE){
         int[] a = {temp[0],temp[1]-1};
         burns.add(a);
         map[temp[0]][temp[1]-1] = FIRE;
-      }
-      if (temp[1]<map[0].length-1 && map[temp[0]][temp[1]+1] == TREE){
+      }if (temp[1]<map[0].length-1 && map[temp[0]][temp[1]+1] == TREE){
         int[] a = {temp[0],temp[1]+1};
         burns.add(a);
         map[temp[0]][temp[1]+1] = FIRE;
