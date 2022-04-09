@@ -84,29 +84,63 @@ public class BurnTrees{
   }
 
 
-
-    public static void main(String[]args){
-      int WIDTH = 20;
-      int HEIGHT = 20;
-      int DELAY = 200;
-      double DENSITY = .6;
-      if(args.length > 1){
-        WIDTH = Integer.parseInt(args[0]);
-        HEIGHT = Integer.parseInt(args[1]);
-        DENSITY = Double.parseDouble(args[2]);
-      }
-      if(args.length > 3){
-        DELAY = Integer.parseInt(args[3]);
-      }
-      BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
-
-
-      int ans = b.animate(DELAY);//animate all screens
-      System.out.println(ans);//print the final answer
-
-      //int ans = b.outputAll();//print all screens one after another
-      //System.out.println(ans);//print the final answer
+  public static double runmulti(int width, int height, double density){
+    BurnTrees one = new BurnTrees(width, height, density);
+    BurnTrees two = new BurnTrees(width, height, density);
+    BurnTrees three = new BurnTrees(width, height, density);
+    BurnTrees four = new BurnTrees(width, height, density);
+    BurnTrees five = new BurnTrees(width, height, density);
+    BurnTrees six = new BurnTrees(width, height, density);
+    BurnTrees seven = new BurnTrees(width, height, density);
+    BurnTrees eight = new BurnTrees(width, height, density);
+    BurnTrees nine = new BurnTrees(width, height, density);
+    BurnTrees ten = new BurnTrees(width, height, density);
+    double avg = (double)(one.run() + two.run() + three.run() + four.run() + five.run() + six.run() + seven.run() + eight.run() + nine.run() + ten.run());
+    return avg/10;
+  }
+  public static void main(String[]args){
+    int WIDTH = 500;
+    int HEIGHT = 500;
+    int DELAY = 50;
+    double DENSITY = .6;
+    if(args.length > 1){
+      WIDTH = Integer.parseInt(args[0]);
+      HEIGHT = Integer.parseInt(args[1]);
+      DENSITY = Double.parseDouble(args[2]);
     }
+    if(args.length > 3){
+      DELAY = Integer.parseInt(args[3]);
+    }
+    System.out.println("## Table for max burn time on different size (60% density, length==width)\n");
+    System.out.println("Size (length) | Tick 1 | Tick 2 | Tick 3 | Tick 4 | Tick 5 | Avg Tick");
+    System.out.println("--- | --- | --- | --- | --- | --- | ---");
+    for (int i = 100 ; i < 1600;i+=100){
+      BurnTrees one = new BurnTrees(i, i, 0.6);
+      BurnTrees two = new BurnTrees(i, i, 0.6);
+      BurnTrees three = new BurnTrees(i, i, 0.6);
+      BurnTrees four = new BurnTrees(i, i, 0.6);
+      BurnTrees five = new BurnTrees(i, i, 0.6);
+      int a = one.run();
+      int b = two.run();
+      int c = three.run();
+      int d = four.run();
+      int e = five.run();
+      double avg = (double)(a+b+c+d+e);
+      System.out.println("Size "+i+" | "+a+" | "+b+" | "+c+" | "+d+" | "+e+" | "+ (avg/5));
+    }
+    System.out.println("\n## Table for densities 5% to 95% (5% intervals)\n");
+    System.out.println("Density | Avg. Ticks");
+    System.out.println("--- | ---");
+    for (double i = 0.05 ; i < 1;i+=0.05){
+      System.out.println("Density " + Math.round(i*100) + "% | " + runmulti(WIDTH, HEIGHT, i));
+    }
+    System.out.println("\n## Table for densities 55% to 65% (near maximum)\n");
+    System.out.println("Density | Avg. Ticks");
+    System.out.println("--- | ---");
+    for (double i = 0.55 ; i < 0.66;i+=0.01){
+      System.out.println("Density " + Math.round(i*100) + "% | " + runmulti(WIDTH, HEIGHT, i));
+    }
+  }
 
 
 
