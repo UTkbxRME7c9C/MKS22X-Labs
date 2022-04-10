@@ -1,14 +1,14 @@
 # I BURN TREES I LOVE TO BURN DIGITAL TREES
 
-#### 1.  Why did you choose the board size for your finalized table?
+### 1.  Why did you choose the board size for your finalized table?
 I chose 500x500 because it is large enough to produce more consistent results (less range) than a smaller table, and is small enough to not take too long to run for multiple tests.
-#### 2.  Why did you choose the number of repetitions size for your finalized table?
+### 2.  Why did you choose the number of repetitions size for your finalized table?
 I chose 10 repetitions per density (19 densities * 10 = 190 repetitions total) because it produces more
-#### 3.  What did your testing show about changing the board size?
+### 3.  What did your testing show about changing the board size?
 As the size increases, the burn time is more consistent per test, and it increases the most at the smaller sizes (100-500), but as it gets bigger it increases time less.
-#### 4.  Knowing that there were differences based on board size, what was the relationship between the board size and the maximum burn time? How did you test this?
+### 4.  Knowing that there were differences based on board size, what was the relationship between the board size and the maximum burn time? How did you test this?
 The burn time increases logarithmically because it increases the most when the board size is smaller, but larger sizes increase burn time the least. I tested this by making a table to sizes 100 to 1500 with intervals of 100, and doing 5 tests for each.
-#### 5.  What density of trees yields the maximum burn time?
+### 5.  What density of trees yields the maximum burn time?
 The density 60% produces the maximum burn time.
 
 
