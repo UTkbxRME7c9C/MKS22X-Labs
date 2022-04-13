@@ -12,6 +12,7 @@ void draw(){
          x = change(x);
          y = change(y);
          avatar(x,y);
+         avatar(mouseX,mouseY);
          
 }
 int change(int value){
