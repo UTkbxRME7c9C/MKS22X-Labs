@@ -24,11 +24,13 @@
         x+=xSpeed;
         y+=ySpeed;
         if(y<=radius || y>=height-radius){
-          ySpeed=ySpeed*-1; 
+          ySpeed=ySpeed*-1;
         }if (x<=radius || x>=width-radius){
           xSpeed=xSpeed*-1;
         }
-        ySpeed+=4;
+        if (y<height-radius){
+          ySpeed+=1;          
+        }
         //Part 4
         //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
         //You don't need a variable for this if every object experiences the same

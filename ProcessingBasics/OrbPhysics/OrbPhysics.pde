@@ -16,4 +16,8 @@
       fill(0);
       text(frameRate,20,20);
       text(orbList.size(),20,40);
+      if (orbList.size() >= 1){
+        text(orbList.get(orbList.size()-1).ySpeed, 20, 50);  
+        text(orbList.get(orbList.size()-1).y, 20, 60);        
+      }
     }
