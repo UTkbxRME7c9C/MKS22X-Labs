@@ -10,8 +10,8 @@
   int SQUARESIZE;
 
   void setup() {
-    size(600, 500);
-    ROWS = 50;
+    size(600, 800);
+    ROWS = 80;
     COLS = 60;
     /**question 1 *********************************
      *At this point you have initialized width, height,ROWS,COLS. You can change these values
@@ -46,7 +46,7 @@
      *(The print statement is NOT part of the simulation, it is to help you answer this question)
      *hint:  If you cannot figure this out analytically, experiment to test
      *       the difference by changing the code. A print statement is commented out to facilitate testing.
-     *ANSWER HERE:
+     *ANSWER HERE: If we update per frame instead of 10 frames, it would spread too fast.
      */
 
     String[]lines = treeSim.toString().split("\n");
@@ -71,7 +71,7 @@
      *Please use the same values that it was initialized with in the setup.
      * ANSWER: UPDATE THE NEXT LINE
      */
-    treeSim = null;
+    treeSim = new BurnTrees(ROWS, COLS, DENSITY);
   }
 
 
@@ -83,6 +83,19 @@
    *ANSWER: Complete this method.
    */
   void stringToSquares(String[]lines) {
+    for (int i = 0;i<ROWS;i++){
+      for(int j = 0; j<COLS;j++){
+         rect((j)*SQUARESIZE,i*SQUARESIZE,SQUARESIZE,SQUARESIZE);
+         fill(255);
+         if (lines[i].charAt(j) == '@'){
+            fill(15,170,20); 
+         } else if (lines[i].charAt(j) == 'w'){
+            fill(226,89,15); 
+         } else if (lines[i].charAt(j) == '.'){
+            fill(150); 
+         }
+      }
+    }
     /**Complete this method.
      *1. Break up your screen by drawing ROWSxCOLS squares of the same color.
      *2. Decide how to fill them in using the String[] parameter
