@@ -28,7 +28,7 @@
      *ANSWER : replace squareSize = 8; with the correct square size.
      * DO NOT just write a number, it must work when you change the size() command or the ROWS and COLS
      */
-    SQUARESIZE = width/COLS;//side length
+    SQUARESIZE = (width/COLS);//side length
 
   }
 
@@ -85,15 +85,17 @@
   void stringToSquares(String[]lines) {
     for (int i = 0;i<ROWS;i++){
       for(int j = 0; j<COLS;j++){
-         rect((j)*SQUARESIZE,i*SQUARESIZE,SQUARESIZE,SQUARESIZE);
-         fill(255);
          if (lines[i].charAt(j) == '@'){
             fill(15,170,20); 
          } else if (lines[i].charAt(j) == 'w'){
             fill(226,89,15); 
          } else if (lines[i].charAt(j) == '.'){
             fill(150); 
+         } else {
+            fill(255); 
          }
+         rect(j*SQUARESIZE,i*SQUARESIZE,SQUARESIZE,SQUARESIZE);
+
       }
     }
     /**Complete this method.

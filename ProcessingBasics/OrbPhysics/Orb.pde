@@ -16,25 +16,26 @@
 
 
       void display(){
-        ellipse(x, y,radius*2, radius*2);
         fill(c);
+        ellipse(x, y,radius*2, radius*2);
       }
 
       void move(){
         x+=xSpeed;
         y+=ySpeed;
-        if(y<=radius || y>=height-radius){
-          ySpeed=ySpeed*-1;
-        }if (x<=radius || x>=width-radius){
-          xSpeed=xSpeed*-1;
-        }
-        if (y<height-radius){
-          ySpeed+=1;          
-        }
-        //Part 4
-        //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
-        //You don't need a variable for this if every object experiences the same
-        //gravitational constant (find the value that looks nice experimentally, 9.8 will not work well).
+        //if(y<=radius || y>=height-radius){
+        //  ySpeed=ySpeed*-1;
+        //}if (x<=radius || x>=width-radius){
+        //  xSpeed=xSpeed*-1;
+        //}
+        //if (y<height-radius){
+        //  ySpeed+=1;          
+        //}
+      }
+      void attract(Orb b){
+          float distance = dist(x, y, b.x,b.y);
+          b.xSpeed += 50 * ((x-b.x)/(distance * distance));
+          b.ySpeed += 50 * ((y-b.y)/(distance * distance));
 
       }
     }
