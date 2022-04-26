@@ -18,19 +18,22 @@
       void display(){
         fill(c);
         ellipse(x, y,radius*2, radius*2);
+        line(x,y,x+(xSpeed*5), y+(ySpeed*5));
       }
 
       void move(){
         x+=xSpeed;
         y+=ySpeed;
-        //if(y<=radius || y>=height-radius){
-        //  ySpeed=ySpeed*-1;
-        //}if (x<=radius || x>=width-radius){
-        //  xSpeed=xSpeed*-1;
-        //}
-        //if (y<height-radius){
-        //  ySpeed+=1;          
-        //}
+      }
+      void gravity(){
+        if(y<=radius || y>=height-radius){
+          ySpeed=ySpeed*-1;
+        }if (x<=radius || x>=width-radius){
+          xSpeed=xSpeed*-1;
+        }
+        if (y<height-radius){
+          ySpeed+=0.15;          
+        } 
       }
       void attract(Orb b){
           float distance = dist(x, y, b.x,b.y);
