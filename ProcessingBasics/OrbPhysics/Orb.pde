@@ -34,8 +34,8 @@
       }
       void attract(Orb b){
           float distance = dist(x, y, b.x,b.y);
-          b.xSpeed += 50 * ((x-b.x)/(distance * distance));
-          b.ySpeed += 50 * ((y-b.y)/(distance * distance));
+          b.xSpeed += 20 * ((x-b.x)/(distance * distance));
+          b.ySpeed += 20 * ((y-b.y)/(distance * distance));
 
       }
     }

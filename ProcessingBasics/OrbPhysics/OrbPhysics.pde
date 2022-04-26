@@ -6,7 +6,7 @@
       center = new Orb(width/2,height/2,0,0,20);
     }
     void mouseClicked() {
-      Orb a = new Orb((float)mouseX, (float)mouseY,random(-3.0,3.0), random(-3.0,3.0), random(20,70));
+      Orb a = new Orb((float)mouseX, (float)mouseY,random(-3.0,3.0), random(-3.0,3.0), random(10,30));
       orbList.add(a);
     }
     void draw() {
