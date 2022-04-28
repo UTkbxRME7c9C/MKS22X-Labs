@@ -2,6 +2,9 @@
     Orb center;
     boolean bg = true;
     byte mode = 0;
+    final int BOUNCE = 0;
+    final int ORBIT = 1;
+    final int SPRING = 2;
     void setup() {
       size(1000, 800);
       orbList = new ArrayList<Orb>();
@@ -22,9 +25,9 @@
           }else {bg = true;}
        }
        if (key == ' '){
-        if (mode == 1){
-          mode = 0;
-        } else {mode = 1;}
+        if (mode == SPRING){
+          mode = BOUNCE;
+        } else {mode++;}
        }
     }
     void draw() {
@@ -32,17 +35,23 @@
       center.display();
       for (Orb o : orbList) {
         o.move();
-        if (mode == 0){
-         o.gravity(); 
-        } else if (mode == 1){
+        if (mode == BOUNCE){
+         o.bounce(); 
+        } else if (mode == ORBIT){
            center.attract(o);          
+        } else if (mode == SPRING){
+           center.attractSpring(o);
         }
         o.display();
       }
       fill(0);       
-      if (mode == 0){
-        text("GRAVITY",20, 20);
-      } else{text("ORBIT",20, 20);}
+      if (mode == BOUNCE){
+        text("BOUNCE",20, 20);
+      } else if (mode == ORBIT){
+        text("ORBIT",20, 20);
+      } else if (mode == SPRING){
+        text("SPRING",20, 20);
+      }
       text(frameRate, 20 ,40);
       }
     
