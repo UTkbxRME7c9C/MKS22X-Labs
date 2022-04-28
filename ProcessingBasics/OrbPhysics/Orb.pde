@@ -1,7 +1,3 @@
-    final float SPRING_CONSTANT = 0.015;
-    final float SPRING_DAMPEN = 0.995;
-    final float SPRING_LENGTH = 150.0;
-    final float GRAV = 20.0;
     public class Orb{
       float x,y;
       float xSpeed,ySpeed;
@@ -35,14 +31,17 @@
         }if (x<=radius || x>=width-radius){
           xSpeed=xSpeed*-1;
         }
-        if (y<height-radius){
+        if (grav && y<height-radius){
           ySpeed+=0.15;          
         } 
       }
       void attract(Orb b){
+        if (grav)
+        {
           float distance = dist(x, y, b.x,b.y);
           b.xSpeed += GRAV * ((x-b.x)/(distance * distance));
-          b.ySpeed += GRAV * ((y-b.y)/(distance * distance));
+          b.ySpeed += GRAV * ((y-b.y)/(distance * distance)); 
+        }
 
       }
       void attractSpring(Orb b){
@@ -53,7 +52,7 @@
           b.xSpeed *= SPRING_DAMPEN;
           b.ySpeed += springf * ((y-b.y)/(distance));
           b.ySpeed *= SPRING_DAMPEN;
-          b.ySpeed+=2;
+          if (grav) b.ySpeed+=2;
 
       }
     }

@@ -2,9 +2,14 @@
     Orb center;
     boolean bg = true;
     byte mode = 0;
+    boolean grav = true;
     final int BOUNCE = 0;
     final int ORBIT = 1;
     final int SPRING = 2;
+    final float SPRING_CONSTANT = 0.015;
+    final float SPRING_DAMPEN = 0.995;
+    final float SPRING_LENGTH = 50.0;
+    final float GRAV = 20.0;
     void setup() {
       size(1000, 800);
       orbList = new ArrayList<Orb>();
@@ -28,6 +33,11 @@
         if (mode == SPRING){
           mode = BOUNCE;
         } else {mode++;}
+       }
+       if (key == 'g'){
+         if (grav) {
+           grav = false;
+         } else{grav = true;}
        }
     }
     void draw() {
