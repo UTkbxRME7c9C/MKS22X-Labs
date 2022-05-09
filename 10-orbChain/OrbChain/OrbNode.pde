@@ -25,8 +25,12 @@ public class OrbNode {
     ellipse(x, y, radius*2, radius*2);
     //If next or previous exist, draw lines to them! (aim for slightly off center)
     /*you write this part*/
-
-
+    if(next != null){
+      line(x, y, next.x, next.y);
+    }
+    if (prev != null){
+      line(x, y, prev.x, prev.y);
+    }
   }
 
   void springAttract(OrbNode other) {
@@ -44,6 +48,8 @@ public class OrbNode {
   *complete this method
   */
   void move() {
+    if (next != null) springAttract(next);
+    if (prev != null) springAttract(prev);
     //have prev and next apply spring force to this node;
     /*you write this part*/
 
