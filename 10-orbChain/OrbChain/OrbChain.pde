@@ -15,28 +15,28 @@ void mouseClicked() {
 void keyPressed(){
   switch(key){
     case '1':
-      SPRING_CONSTANT = SPRING_CONSTANT*1.1;
+      SPRING_CONSTANT = SPRING_CONSTANT*1.05;
       break;
     case '2':
-      SPRING_CONSTANT = SPRING_CONSTANT*0.9;
+      SPRING_CONSTANT = SPRING_CONSTANT*0.95;
       break;
     case '3':
-      SPRING_DAMPEN = SPRING_DAMPEN*1.1;
+      SPRING_DAMPEN = SPRING_DAMPEN*1.05;
       break;
     case '4':
-      SPRING_DAMPEN = SPRING_DAMPEN*0.9;
+      SPRING_DAMPEN = SPRING_DAMPEN*0.95;
       break;
     case '5':
-      SPRING_LENGTH = SPRING_LENGTH*1.1;
+      SPRING_LENGTH = SPRING_LENGTH*1.05;
       break;
     case '6':
-      SPRING_LENGTH = SPRING_LENGTH*0.9;
+      SPRING_LENGTH = SPRING_LENGTH*0.95;
       break;
     case '7':
-      GRAVITY = GRAVITY*1.1;
+      GRAVITY = GRAVITY*1.05;
       break;
     case '8':
-      GRAVITY = GRAVITY*0.9;
+      GRAVITY = GRAVITY*0.95;
       break;
   }
 }
