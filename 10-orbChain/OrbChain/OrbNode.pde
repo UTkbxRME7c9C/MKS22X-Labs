@@ -48,8 +48,8 @@ public class OrbNode {
   *complete this method
   */
   void move() {
-    if (next != null) springAttract(next);
-    if (prev != null) springAttract(prev);
+    prev.springAttract(this);
+    next.springAttract(this);
     //have prev and next apply spring force to this node;
     /*you write this part*/
 
