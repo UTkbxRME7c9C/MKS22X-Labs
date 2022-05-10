@@ -14,15 +14,20 @@ public class OrbList {
   *complete this method
   */
   void add(OrbNode orb){
-    OrbNode tmp = first.next;
+    OrbNode tmp;
+   if (mouseX < width/2){
+    tmp = first.next;
     first.next = orb;
     orb.prev = first;
     orb.next = tmp;
-    tmp.prev = orb;
-    //last.next = orb;
-    //orb.prev = last;
-    //last = orb;
-    
+    tmp.prev = orb; 
+   } else{
+    tmp = last.prev;
+    last.prev = orb;
+    orb.next = last;
+    orb.prev = tmp;
+    tmp.next = orb;
+   }
   }
 
   /**
