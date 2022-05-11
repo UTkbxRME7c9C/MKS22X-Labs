@@ -14,8 +14,8 @@ void setup() {
   orbs = new OrbList();
 }
 void mouseClicked() {
-  if (CLICKMODE == 0) orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
-  if (CLICKMODE == 1) orbs.add(mouseX, new OrbNode(mouseX,mouseY,0,0,30));
+  if (CLICKMODE == ADDEND) orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
+  if (CLICKMODE == INSERT) orbs.add(mouseX, new OrbNode(mouseX,mouseY,0,0,30));
 }
 void keyPressed(){
   switch(key){

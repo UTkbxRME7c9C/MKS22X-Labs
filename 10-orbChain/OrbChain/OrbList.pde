@@ -9,7 +9,18 @@ public class OrbList {
     first.next = last;
     last.prev = first;
   }
-
+  OrbNode getNodeAt(int x, int y){
+    OrbNode l = first;
+    float val;
+    while (l != null){
+     val = pow((x-l.x),2) + pow(y-l.y,2);
+     if(val < pow(l.radius,2)){
+       break; 
+     }
+     l = l.next; 
+    }
+    return l;
+  }
   /**
   *complete this method
   */
