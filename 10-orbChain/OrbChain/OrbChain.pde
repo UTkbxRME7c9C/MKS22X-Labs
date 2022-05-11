@@ -16,7 +16,7 @@ void setup() {
 void mouseClicked() {
   if (CLICKMODE == ADDEND) orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
   if (CLICKMODE == INSERT) orbs.add(mouseX, new OrbNode(mouseX,mouseY,0,0,30));
-  if (CLICKMODE == DELETE) orbs.delete(orbs.getNodeAt(mouseX,mouseY));
+  if (CLICKMODE == DEL) orbs.delete(orbs.getNodeAt(mouseX,mouseY));
 }
 String CLICKMODE(){
   if (CLICKMODE==ADDEND){

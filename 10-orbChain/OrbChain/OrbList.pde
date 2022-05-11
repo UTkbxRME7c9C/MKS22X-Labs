@@ -9,6 +9,12 @@ public class OrbList {
     first.next = last;
     last.prev = first;
   }
+  void delete(OrbNode target){
+    if (target != null && target != first && target != last){
+      target.prev.next = target.next;
+      target.next.prev = target.prev;
+    }
+  }
   OrbNode getNodeAt(int x, int y){
     OrbNode l = first;
     float val;
