@@ -16,6 +16,14 @@ void setup() {
 void mouseClicked() {
   if (CLICKMODE == ADDEND) orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
   if (CLICKMODE == INSERT) orbs.add(mouseX, new OrbNode(mouseX,mouseY,0,0,30));
+  if (CLICKMODE == DELETE) orbs.delete(orbs.getNodeAt(mouseX,mouseY));
+}
+String CLICKMODE(){
+  if (CLICKMODE==ADDEND){
+    return "ADD";
+  }if (CLICKMODE==INSERT){
+    return "INSERT";
+  }else{return "DELETE";}
 }
 void keyPressed(){
   switch(key){
@@ -26,7 +34,9 @@ void keyPressed(){
       SPRING_CONSTANT = SPRING_CONSTANT*0.95;
       break;
     case '3':
-      SPRING_DAMPEN = SPRING_DAMPEN*1.05;
+      if (SPRING_DAMPEN*1.05 < 1){
+        SPRING_DAMPEN = SPRING_DAMPEN*1.05;
+      }
       break;
     case '4':
       SPRING_DAMPEN = SPRING_DAMPEN*0.95;
@@ -58,6 +68,6 @@ void draw() {
   text("SPRING_DAMPEN="+SPRING_DAMPEN,20, 40);
   text("SPRING_LENGTH="+SPRING_LENGTH,20, 60);
   text("GRAVITY="+GRAVITY,20, 80);
-  text("CLICKMODE="+CLICKMODE,20, 100);
+  text("CLICKMODE="+CLICKMODE(),20, 100);
 
 }

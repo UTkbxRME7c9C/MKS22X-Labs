@@ -13,8 +13,8 @@ public class OrbList {
     OrbNode l = first;
     float val;
     while (l != null){
-     val = pow((x-l.x),2) + pow(y-l.y,2);
-     if(val < pow(l.radius,2)){
+     val = dist(x,y,l.x,l.y);
+     if(val < l.radius){
        break; 
      }
      l = l.next; 
